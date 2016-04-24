@@ -75,6 +75,16 @@ The host machine must have:
     end
   end
   EOF
+  cat << EOF > /tmp/win7-custom-image/winrm.bat
+  @echo off
+  set WINRM_EXEC=call %SYSTEMROOT%\System32\winrm
+  %WINRM_EXEC% quickconfig -q
+  %WINRM_EXEC% set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
+  %WINRM_EXEC% set winrm/config @{MaxTimeoutms="1800000"}
+  %WINRM_EXEC% set winrm/config/client/auth @{Basic="true"}
+  %WINRM_EXEC% set winrm/config/service @{AllowUnencrypted="true"}
+  %WINRM_EXEC% set winrm/config/service/auth @{Basic="true"}
+  EOF
   cd /tmp/win7-custom-image
   vagrant up
   ```
@@ -84,18 +94,7 @@ The host machine must have:
 
 1. Manually update Virtualbox Guest Additions, if needed.
 
-1. Run the following script as administrator
-
-  ```text
-  @echo off
-  set WINRM_EXEC=call %SYSTEMROOT%\System32\winrm
-  %WINRM_EXEC% quickconfig -q
-  %WINRM_EXEC% set winrm/config/winrs @{MaxMemoryPerShellMB="300"}
-  %WINRM_EXEC% set winrm/config @{MaxTimeoutms="1800000"}
-  %WINRM_EXEC% set winrm/config/client/auth @{Basic="true"}
-  %WINRM_EXEC% set winrm/config/service @{AllowUnencrypted="true"}
-  %WINRM_EXEC% set winrm/config/service/auth @{Basic="true"}
-  ```
+1. Run the `winrm.bat` script as administrator.
 
 1. At this time the [up command](http://docs.vagrantup.com/v2/cli/up.html) will
    be probably verifying if the guest booted properly. Since you just
