@@ -133,10 +133,15 @@ of this is strictly necessary.
   choco install -y dotnet4.5
   choco install -y adobedigitaleditions
   choco install -y python2
+  choco install -y garmin-express
   choco install -y pip
   ```
 
-1. In a new terminal window as administrator
+  _There appears to be an error installing `pip`, which coincidentally also
+  seems fine. I have no idea but this seems to work so I'm going to leave this
+  be. Computers._
+
+1. In a *new* terminal window as administrator
 
   ```text
   easy_install http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win32-py2.7.exe
