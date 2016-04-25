@@ -71,7 +71,7 @@ The host machine must have:
       vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
       vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
       vb.customize ["modifyvm", :id, "--usb", "on"]
-      vb.customize ["modifyvm", :id, "--usbehci", "on"]
+      vb.customize ["modifyvm", :id, "--usbxhci", "on"]
     end
   end
   EOF
@@ -99,6 +99,8 @@ The host machine must have:
 1. At this time the [up command](http://docs.vagrantup.com/v2/cli/up.html) will
    be probably verifying if the guest booted properly. Since you just
    configured **WinRM**, the command should terminate successfully.
+
+1. Install the [Intel USB 3.0 drivers](https://downloadcenter.intel.com/download/21129/USB-3-0-Driver-Intel-USB-3-0-eXtensible-Host-Controller-Driver-for-Intel-7-Series-C216-Chipset-Family) (if needed).
 
 1. Reboot your Windows virtual machine.
 
